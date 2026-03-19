@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MEDITRACKER Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <script src="js/translations.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/app.js"></script>
+</head>
+<body>
+
+  <div class="container">
+    <header class="dashboard-header">
+      <div>
+        <h1 class="title" data-i18n-key="dashboardTitle">MEDITRACKER</h1>
+        <p class="subtitle" id="welcome-message">Welcome back!</p>
+      </div>
+      <div class="menu-container">
+        <button id="menuButton" class="hamburger-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+        <div id="dropdownMenu" class="dropdown-menu">
+          <a href="profile.html" class="dropdown-item" data-i18n-key="profile">Profile</a>
+          <a href="about.html" class="dropdown-item" data-i18n-key="about">About</a>
+          <a href="#" id="logoutButton" class="dropdown-item" data-i18n-key="logout">Logout</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="dashboard-grid">
+      <button class="dashboard-btn" onclick="location.href='todays-medicine.html'">
+        <div class="icon-container" style="background-color: #EBF5FF;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#007BFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+        </div>
+        <span data-i18n-key="todaysMedicine">Today's Medicine</span>
+      </button>
+      <button class="dashboard-btn" onclick="location.href='add-medicine.html'">
+        <div class="icon-container" style="background-color: #E8F5E9;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4CAF50" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+        </div>
+        <span data-i18n-key="addMedicine">Add Medicine</span>
+      </button>
+      <button class="dashboard-btn" onclick="location.href='history.html'">
+        <div class="icon-container" style="background-color: #F3E5F5;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#9C27B0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+        </div>
+        <span data-i18n-key="history">History</span>
+      </button>
+      <button class="dashboard-btn" onclick="location.href='settings.html'">
+        <div class="icon-container" style="background-color: #FBE9E7;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FF5722" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+        </div>
+        <span data-i18n-key="settings">Settings</span>
+      </button>
+    </main>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const loggedInUserEmail = sessionStorage.getItem('loggedInUser');
+      if (!loggedInUserEmail) {
+        alert('You must be logged in to view this page.');
+        window.location.href = 'index.html';
+        return;
+      }
+      
+      // Welcome message is now set by the Universal Script
+      // document.getElementById('welcome-message').textContent = `Welcome back, ${loggedInUserEmail}!`;
+
+      const menuButton = document.getElementById('menuButton');
+      const dropdownMenu = document.getElementById('dropdownMenu');
+      const logoutButton = document.getElementById('logoutButton');
+      
+      menuButton.addEventListener('click', (event) => {
+        event.stopPropagation();
+        dropdownMenu.classList.toggle('show');
+      });
+
+      logoutButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        sessionStorage.removeItem('loggedInUser');
+        alert('You have been logged out.');
+        window.location.href = 'index.html';
+      });
+
+      window.addEventListener('click', () => {
+        if (dropdownMenu.classList.contains('show')) {
+          dropdownMenu.classList.remove('show');
+        }
+      });
+    });
+  </script>
+
+  <script>
+    (function() {
+      // Apply Dark/Light Mode
+      if (localStorage.getItem("mode") === "dark") {
+        document.body.classList.add("dark-mode");
+      }
+      
+      const settings = JSON.parse(localStorage.getItem("meditracker_settings") || '{}');
+
+      // Apply Language
+      const lang = settings.language || 'en';
+      applyLanguage(lang);
+      
+      // Apply Accent Color
+      const accentColorName = settings.accentColor || 'blue';
+      let colorCode = '#007bff';
+      if (accentColorName === 'green') colorCode = '#198754';
+      if (accentColorName === 'purple') colorCode = '#6f42c1';
+      document.body.style.setProperty('--accent-color', colorCode);
+
+      // Listen for changes
+      window.addEventListener("storage", function(event) {
+        if (event.key === "mode") {
+          document.body.classList.toggle("dark-mode", event.newValue === "dark");
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

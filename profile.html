@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>User Profile - MEDITRACKER</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/styles.css"> <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f8f9fa;
+      color: #343a40;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 2rem;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    .profile-container {
+      background-color: #ffffff;
+      border-radius: 16px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+      max-width: 800px;
+      width: 100%;
+      padding: 2.5rem;
+      display: flex;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+    }
+
+    .profile-sidebar {
+      flex: 1;
+      min-width: 200px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .profile-picture {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background-color: #e9ecef;
+      margin: 0 auto 1rem auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 3rem;
+      color: #adb5bd;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 24 24' fill='none' stroke='%23adb5bd' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2'%3E%3C/path%3E%3Ccircle cx='12' cy='7' r='4'%3E%3C/circle%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      border: 4px solid #fff;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+
+    .upload-btn {
+        background-color: #f1f3f5;
+        color: #495057;
+        border: none;
+        border-radius: 8px;
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+        margin-top: 0.5rem;
+    }
+    .upload-btn:hover {
+        background-color: #dee2e6;
+    }
+
+    .user-name-display {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-top: 1rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .user-email-display {
+      font-size: 1rem;
+      color: #6c757d;
+      word-break: break-all;
+    }
+
+    .profile-form-container {
+      flex: 2;
+      min-width: 300px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    .form-group label {
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+    .primary-btn {
+        margin-top: 1rem;
+        background: #007bff;
+        transition: background-color 0.2s ease;
+    }
+    .primary-btn:hover {
+        background: #0056b3;
+    }
+    .secondary-btn {
+        background-color: #e9ecef;
+        color: #495057;
+        margin-top: 0.5rem;
+    }
+    .secondary-btn:hover {
+        background-color: #dee2e6;
+    }
+    textarea, input {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        border: 1px solid #ced4da;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-family: 'Inter', sans-serif;
+        box-sizing: border-box;
+    }
+    textarea {
+        resize: vertical;
+        min-height: 100px;
+    }
+
+    /* Dark Mode Adjustments */
+    body.dark-mode {
+        background-color: #121212;
+        color: #e0e0e0;
+    }
+    body.dark-mode .profile-container {
+        background-color: #1e1e1e;
+        color: #e0e0e0;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+    }
+    body.dark-mode .profile-picture {
+        background-color: #333;
+        border-color: #2c2c2c;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2'%3E%3C/path%3E%3Ccircle cx='12' cy='7' r='4'%3E%3C/circle%3E%3C/svg%3E");
+    }
+    body.dark-mode .upload-btn { background-color: #333; color: #e0e0e0; }
+    body.dark-mode .upload-btn:hover { background-color: #444; }
+    body.dark-mode .user-email-display { color: #adb5bd; }
+    body.dark-mode .secondary-btn { background-color: #333; color: #e0e0e0; }
+    body.dark-mode .secondary-btn:hover { background-color: #444; }
+    body.dark-mode textarea, body.dark-mode input {
+        background-color: #2c2c2c;
+        border-color: #444;
+        color: #e0e0e0;
+    }
+    
+    @media (max-width: 768px) {
+        body { padding: 1rem; }
+        .profile-container { flex-direction: column; padding: 1.5rem; }
+        .profile-sidebar { border-bottom: 1px solid #dee2e6; padding-bottom: 1.5rem; margin-bottom: 1.5rem; }
+        body.dark-mode .profile-sidebar { border-bottom-color: #333; }
+    }
+  </style>
+</head>
+<body>
+  <div class="profile-container">
+    <aside class="profile-sidebar">
+      <div id="profilePicture" class="profile-picture"></div>
+      <label for="profilePicInput" class="upload-btn">Change Photo</label>
+      <input type="file" id="profilePicInput" accept="image/*" style="display: none;">
+      
+      <h2 id="userNameDisplay" class="user-name-display">Your Name</h2>
+      <p id="userEmailDisplay" class="user-email-display">your.email@example.com</p>
+    </aside>
+
+    <main class="profile-form-container">
+      <h1>Your Profile</h1>
+      <form id="profileForm">
+        <div class="form-group">
+          <label for="userName">Full Name</label>
+          <input type="text" id="userName" placeholder="e.g., John Doe">
+        </div>
+
+        <div class="stats-grid">
+          <div class="form-group">
+            <label for="userAge">Age</label>
+            <input type="number" id="userAge" placeholder="e.g., 30">
+          </div>
+          <div class="form-group">
+            <label for="userHeight">Height (cm)</label>
+            <input type="number" id="userHeight" placeholder="e.g., 175">
+          </div>
+          <div class="form-group">
+            <label for="userWeight">Weight (kg)</label>
+            <input type="number" id="userWeight" placeholder="e.g., 70">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="userDisease">Known Conditions / Notes</label>
+          <textarea id="userDisease" rows="4" placeholder="e.g., Allergy to penicillin, Type 2 Diabetes"></textarea>
+        </div>
+
+        <button type="submit" class="primary-btn">Save Profile</button>
+        <button type="button" class="primary-btn secondary-btn" onclick="location.href='main.html'">Back to Dashboard</button>
+      </form>
+    </main>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const profileForm = document.getElementById('profileForm');
+      const loggedInUserEmail = sessionStorage.getItem('loggedInUser');
+      const profilePicInput = document.getElementById('profilePicInput');
+      const profilePictureDiv = document.getElementById('profilePicture');
+
+      if (!loggedInUserEmail) {
+        alert('You must be logged in to view this page.');
+        window.location.href = 'index.html';
+        return;
+      }
+      
+      const profileStorageKey = `profile_${loggedInUserEmail}`;
+      document.getElementById('userEmailDisplay').textContent = loggedInUserEmail;
+
+      const loadProfileData = () => {
+          const profileData = JSON.parse(localStorage.getItem(profileStorageKey) || '{}');
+          document.getElementById('userName').value = profileData.name || '';
+          document.getElementById('userAge').value = profileData.age || '';
+          document.getElementById('userHeight').value = profileData.height || '';
+          document.getElementById('userWeight').value = profileData.weight || '';
+          document.getElementById('userDisease').value = profileData.disease || '';
+          document.getElementById('userNameDisplay').textContent = profileData.name || 'Your Name';
+
+          if (profileData.picture) {
+            profilePictureDiv.style.backgroundImage = `url(${profileData.picture})`;
+          }
+      };
+
+      loadProfileData();
+      
+      profileForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const existingData = JSON.parse(localStorage.getItem(profileStorageKey) || '{}');
+        const newProfileData = {
+          ...existingData,
+          name: document.getElementById('userName').value,
+          age: document.getElementById('userAge').value,
+          height: document.getElementById('userHeight').value,
+          weight: document.getElementById('userWeight').value,
+          disease: document.getElementById('userDisease').value,
+        };
+        localStorage.setItem(profileStorageKey, JSON.stringify(newProfileData));
+        alert('Profile saved successfully!');
+        loadProfileData();
+      });
+
+      profilePicInput.addEventListener('change', (event) => {
+        const file = event.target.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          const imageDataUrl = e.target.result;
+          profilePictureDiv.style.backgroundImage = `url(${imageDataUrl})`;
+          
+          const profileData = JSON.parse(localStorage.getItem(profileStorageKey) || '{}');
+          profileData.picture = imageDataUrl;
+          localStorage.setItem(profileStorageKey, JSON.stringify(profileData));
+          alert('Profile picture updated!');
+        };
+        reader.readAsDataURL(file);
+      });
+    });
+  </script>
+
+  <script>
+  (function() {
+    // 1. Apply the theme on initial page load
+    if (localStorage.getItem("mode") === "dark") {
+      document.body.classList.add("dark-mode");
+    }
+
+    // 2. Listen for theme changes from other open tabs
+    window.addEventListener("storage", function(event) {
+      if (event.key === "mode") {
+        // Use toggle with a boolean to add/remove the class cleanly
+        document.body.classList.toggle("dark-mode", event.newValue === "dark");
+      }
+    });
+  })();
+</script>
+</body>
+</html>

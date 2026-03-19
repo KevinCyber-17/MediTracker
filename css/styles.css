@@ -1,0 +1,324 @@
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: linear-gradient(120deg, #e3f2fd 65%, #fffffe 100%);
+  min-height: 100vh;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+h1 {
+  color: #1976d2;
+  font-size: 2.3em;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 1.2em;
+  margin-top: 1.2em;
+  text-shadow: 0 2px 8px rgba(25,118,210,0.09);
+}
+
+h2, h3 {
+  color: #1976d2;
+  font-weight: 700;
+  text-align: center;
+  margin-top: 0.4em;
+  margin-bottom: 0.9em;
+}
+
+.center-card {
+  background: #fff;
+  padding: 1.9em 1.5em 1.7em 1.5em;
+  border-radius: 22px;
+  box-shadow: 0 6px 28px #38b6ff2c, 0 2px 8px #0002;
+  min-width: 340px;
+  max-width: 440px;
+  width: 100%;
+  margin-bottom: 1.7em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2em;
+}
+
+form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7em;
+  margin-bottom: 1em;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15em;
+  margin-bottom: 0.7em;
+  width: 100%;
+}
+
+.form-group label {
+  font-size: 1.09em;
+  font-weight: 500;
+  margin-bottom: 0.09em;
+}
+
+input[type="text"], input[type="date"], input[type="time"], input[type="tel"], input[type="email"], select {
+  width: 100%;
+  padding: 0.7em;
+  border-radius: 7px;
+  border: 2px solid #cce5ff;
+  font-size: 1.07em;
+  transition: border 0.18s;
+  box-sizing: border-box;
+  margin-bottom: 0.1em;
+}
+input:focus {
+  border: 2px solid #38b6ff;
+  outline: none;
+}
+
+button, .primary-btn {
+  width: 100%;
+  padding: 0.7em 0;
+  background: linear-gradient(90deg, #1976d2 60%, #38b6ff 100%);
+  color: #fff;
+  border: none;
+  border-radius: 7px;
+  font-weight: 700;
+  font-size: 1.1em;
+  cursor: pointer;
+  box-shadow: 0 4px 14px #38b6ff10;
+  transition: background 0.16s, transform 0.13s;
+  margin-top: 0.3em;
+}
+button:hover, .primary-btn:hover {
+  background: linear-gradient(90deg, #1565c0 60%, #009fff 100%);
+  transform: scale(1.03);
+}
+
+.day-cycle-options,
+.food-options {
+  display: flex;
+  gap: 1.1em;
+  flex-wrap: wrap;
+  margin-top: 0.1em;
+}
+
+#medicines,
+#today-medicines, 
+#history {
+  margin-top: 1.1em;
+  background: #fff;
+  max-width: 440px;
+  width: 100%;
+  border-radius: 15px;
+  box-shadow: 0 3px 11px #38b6ff14;
+  padding: 1.2em;
+  font-size: 1.09em;
+}
+
+.medicine-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.medicine-list li {
+  background: #f4fafd;
+  margin-bottom: 0.7em;
+  padding: 0.8em 1em;
+  border-radius: 8px;
+  box-shadow: 0 1px 5px #38b6ff13;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15em;
+  font-size: 1.07em;
+  align-items: flex-start;
+}
+
+.remove-btn {
+  margin-top: 0.4em;
+  align-self: flex-end;
+  padding: 0.32em 0.9em;
+  background: linear-gradient(90deg, #b71c1c 40%, #ff5252 98%);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.96em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.14s, transform 0.13s;
+}
+.remove-btn:hover {
+  background: linear-gradient(90deg, #f44336 60%, #ff7979 100%);
+  transform: scale(1.09);
+}
+
+/* Dashboard 2x2 grid styles */
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 65vh;
+  margin-top: 2em;
+}
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 1.3em;
+  width: 420px;
+  max-width: 96vw;
+  margin: 0 auto;
+}
+.dashboard-btn {
+  background: linear-gradient(100deg, #1976d2 75%, #38b6ff 100%);
+  color: #fff;
+  border: none;
+  border-radius: 24px;
+  font-size: 1.13em;
+  font-weight: 600;
+  box-shadow: 0 4px 18px #38b6ff25;
+  transition: background 0.16s, transform 0.13s;
+  cursor: pointer;
+  height: 4.8em;
+  min-width: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  outline: none;
+  user-select: none;
+  touch-action: manipulation;
+}
+.dashboard-btn:hover,
+.dashboard-btn:active {
+  background: linear-gradient(100deg, #1565c0 75%, #009fff 100%);
+  transform: scale(1.05);
+}
+
+/* Responsive support for mobile */
+@media (max-width: 600px) {
+  .center-card, #medicines, #today-medicines, #history {
+    min-width: 98vw;
+    padding: 0.5em 0.5em;
+    max-width: 98vw;
+  }
+  .dashboard-grid {
+    width: 98vw;
+    gap: 0.65em;
+  }
+  .dashboard-btn {
+    height: 3.1em;
+    font-size: 1em;
+    border-radius: 12px;
+  }
+  h1 {
+    font-size: 1.5em;
+    margin-top: 0.8em;
+    margin-bottom: 0.6em;
+  }
+}
+
+/* History & medicine status coloring */
+.status-taken { color: #2e7d32; font-weight: 600; }
+.status-missed { color: #d81b60; font-weight: 600; }
+.status-no { color: #e65100; font-weight: 600; }
+
+/* Switch styles for Day/Night toggle */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 28px;
+  margin-left: 1em;
+}
+.switch input { display:none; }
+.slider {
+  position: absolute;
+  cursor: pointer; top:0; left:0; right:0; bottom:0;
+  background:#ccc; border-radius:28px; transition: .4s;
+}
+.slider:before {
+  position:absolute; content:"";height:22px;width:22px;left:4px;bottom:3px;
+  background:white; border-radius:50%; transition:.4s;
+}
+input:checked + .slider { background: #38b6ff; }
+input:checked + .slider:before { transform: translateX(22px); }
+
+/* Utility: for inline question row under each medicine */
+.med-query-row {
+  display: flex; flex-direction: column; align-items: flex-start; margin-top: 1em;
+  gap: 0.5em;
+}
+body.dark-mode {
+  background: linear-gradient(120deg, #222835 65%, #323345 100%) !important;
+  color: #e2e6ef;
+}
+
+body.dark-mode h1, 
+body.dark-mode h2, 
+body.dark-mode h3 {
+  color: #80bfff;
+  text-shadow: 0 2px 14px #011b35;
+}
+
+body.dark-mode .center-card, 
+body.dark-mode #medicines, 
+body.dark-mode #today-medicines, 
+body.dark-mode #history {
+  background: #222633;
+  color: #f2f7fa;
+  box-shadow: 0 6px 28px #011b3537, 0 2px 8px #0006;
+}
+
+body.dark-mode .medicine-list li {
+  background: #27324b;
+  color: #e0e6f1;
+  box-shadow: 0 1px 6px #1976d266;
+}
+
+body.dark-mode .dashboard-btn {
+  background: linear-gradient(100deg, #173055 70%, #388bbf 100%);
+  color: #e0e6f1;
+  box-shadow: 0 4px 18px #1976d23a;
+}
+body.dark-mode .dashboard-btn:hover,
+body.dark-mode .dashboard-btn:active {
+  background: linear-gradient(100deg, #12203a 80%, #2980bb 100%);
+}
+body.dark-mode input,
+body.dark-mode select {
+  background: #1d2335;
+  color: #edeef2;
+  border: 2px solid #292f46;
+}
+body.dark-mode input:focus {
+  border: 2px solid #38b6ff;
+}
+body.dark-mode .primary-btn, 
+body.dark-mode .status-btn {
+  background: linear-gradient(90deg, #286eb7 60%, #3ba0f9 100%);
+  color: #fff;
+}
+body.dark-mode .primary-btn:hover,
+body.dark-mode .status-btn:hover {
+  background: linear-gradient(90deg, #133863 60%, #165b96 100%);
+}
+body.dark-mode .status-btn.no {
+  background: linear-gradient(90deg, #972f38 60%, #de686b 100%);
+}
+body.dark-mode .status-btn.no:hover {
+  background: linear-gradient(90deg, #bd323b 60%, #e8807c 100%);
+}
+body.dark-mode .remove-btn {
+  background: linear-gradient(90deg, #941f1f 40%, #bd8989 98%);
+  color: #fff;
+}
+body.dark-mode .remove-btn:hover {
+  background: linear-gradient(90deg, #b44646 60%, #e47777 100%);
+}
+

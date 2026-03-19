@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Medication History - MEDITRACKER</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <script src="js/translations.js"></script>
+  <script src="js/i18n.js"></script>
+
+  <style>
+    body {
+      --accent-color: #007bff;
+      font-family: 'Inter', sans-serif; background-color: #f8f9fa; color: #343a40;
+      margin: 0; padding: 2rem; display: flex; justify-content: center;
+    }
+    .container { max-width: 800px; width: 100%; }
+    .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2.5rem; }
+    .header h1 { font-size: 2.25rem; font-weight: 700; color: #212529; margin: 0; }
+    .header-buttons { display: flex; align-items: center; gap: 0.75rem; }
+    .back-btn, .clear-btn { border: none; border-radius: 8px; padding: 0.6rem 1.2rem; font-size: 0.95rem; font-weight: 500; cursor: pointer; text-decoration: none; transition: background-color 0.2s ease; }
+    .back-btn { background-color: #6c757d; color: white; }
+    .back-btn:hover { background-color: #5a6268; }
+    .clear-btn { background-color: #f1f3f5; color: #495057; }
+    .clear-btn:hover { background-color: #e9ecef; }
+    .medicine-list { list-style: none; padding: 0; margin: 0; }
+    .medicine-card { background-color: #ffffff; border-radius: 12px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06); padding: 1.5rem; margin-bottom: 1.5rem; position: relative; }
+    .med-serial { position: absolute; top: 1.5rem; left: -1rem; background-color: #6c757d; color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: 600; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); }
+    .med-header { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 1px solid #e9ecef; padding-bottom: 1rem; margin-bottom: 1rem; padding-left: 1.5rem; }
+    .med-name { font-size: 1.25rem; font-weight: 600; margin: 0; }
+    .med-cycle { background-color: #e7f5ff; color: var(--accent-color); padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.85rem; font-weight: 500; flex-shrink: 0; }
+    .med-details-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; font-size: 0.95rem; color: #495057; }
+    .detail-item { display: flex; align-items: center; gap: 0.5rem; }
+    .detail-item svg { stroke: #868e96; width: 20px; height: 20px; flex-shrink: 0; }
+    .med-actions { display: flex; justify-content: flex-start; align-items: center; gap: 1rem; padding-top: 1.5rem; margin-top: 1.5rem; border-top: 1px solid #e9ecef; }
+    .status-badge { font-weight: 600; font-size: 1rem; padding: 0.6rem 1.2rem; border-radius: 8px; }
+    .status-taken { background-color: #d1e7dd; color: #0f5132; }
+    .status-not-taken { background-color: #f8d7da; color: #842029; }
+    .no-meds-card { text-align: center; margin-top: 2rem; background-color: #f1f3f5; color: #6c757d; padding: 2rem; border-radius: 12px; font-style: italic; }
+    body.dark-mode { background-color: #121212; color: #e0e0e0; }
+    body.dark-mode .header h1, body.dark-mode .med-name { color: #ffffff; }
+    body.dark-mode .back-btn, body.dark-mode .back-btn:hover { background-color: #495057; }
+    body.dark-mode .clear-btn { background-color: #333; color: #e0e0e0; }
+    body.dark-mode .clear-btn:hover { background-color: #444; }
+    body.dark-mode .medicine-card { background-color: #1e1e1e; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); }
+    body.dark-mode .med-header, body.dark-mode .med-actions { border-color: #333; }
+    body.dark-mode .med-cycle { background-color: var(--accent-color); color: #e0e0e0; }
+    body.dark-mode .med-details-grid { color: #adb5bd; }
+    body.dark-mode .detail-item svg { stroke: #adb5bd; }
+    body.dark-mode .status-taken { background-color: #2a3b2a; color: #66bb6a; }
+    body.dark-mode .status-not-taken { background-color: #4d2323; color: #ff8a80; }
+    body.dark-mode .no-meds-card { background-color: #1e1e1e; color: #adb5bd; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1 data-i18n-key="historyTitle">Medication History</h1>
+      <div class="header-buttons">
+          <button class="clear-btn" onclick="clearHistory()" data-i18n-key="clearHistoryButton">Clear History</button>
+          <a href="main.html" class="back-btn" data-i18n-key="dashboardButton">Dashboard</a>
+      </div>
+    </header>
+    <ul class="medicine-list" id="history-list"></ul>
+  </div>
+  <script src="js/history.js"></script>
+  <script>
+    (function() {
+      if (localStorage.getItem("mode") === "dark") { document.body.classList.add("dark-mode"); }
+      const settings = JSON.parse(localStorage.getItem("meditracker_settings") || '{}');
+      const lang = settings.language || 'en';
+      applyLanguage(lang);
+      const accentColorName = settings.accentColor || 'blue';
+      let colorCode = '#007bff';
+      if (accentColorName === 'green') colorCode = '#198754';
+      if (accentColorName === 'purple') colorCode = '#6f42c1';
+      document.body.style.setProperty('--accent-color', colorCode);
+      window.addEventListener("storage", function(event) {
+        if (event.key === "mode") { document.body.classList.toggle("dark-mode", event.newValue === "dark"); }
+      });
+    })();
+  </script>
+</body>
+</html>

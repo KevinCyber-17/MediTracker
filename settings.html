@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Settings - MEDITRACKER</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      --accent-color: #007bff; /* Default accent color */
+      font-family: 'Inter', sans-serif;
+      background-color: #f8f9fa;
+      color: #343a40;
+      margin: 0;
+      padding: 2rem;
+      display: flex;
+      justify-content: center;
+    }
+
+    .container {
+      max-width: 800px;
+      width: 100%;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between; 
+      align-items: center;
+      margin-bottom: 2.5rem;
+    }
+    .header h1 {
+        font-size: 2.25rem;
+        font-weight: 700;
+        color: #212529;
+        margin: 0;
+    }
+    
+    .header-buttons {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    .back-btn {
+        border: none;
+        border-radius: 8px;
+        padding: 0.6rem 1.2rem;
+        font-size: 0.95rem;
+        font-weight: 500;
+        cursor: pointer;
+        text-decoration: none;
+        transition: background-color 0.2s ease;
+        background-color: #6c757d;
+        color: white;
+    }
+    .back-btn:hover {
+        background-color: #5a6268;
+    }
+
+    .settings-card {
+      background-color: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+      padding: 1.5rem 2rem;
+      margin-bottom: 2rem;
+    }
+    .settings-card h2 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-top: 0;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #e9ecef;
+    }
+
+    .setting-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .setting-item:last-child {
+      margin-bottom: 0;
+    }
+    .setting-label {
+      font-weight: 500;
+    }
+    .setting-label p {
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: #6c757d;
+      margin: 0.25rem 0 0 0;
+    }
+
+    select, input[type="time"] {
+      padding: 0.5rem 0.75rem;
+      border: 1px solid #ced4da;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-family: 'Inter', sans-serif;
+      min-width: 150px;
+    }
+
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 50px;
+      height: 28px;
+    }
+    .switch input { display: none; }
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: #ccc;
+      border-radius: 28px;
+      transition: .4s;
+    }
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 20px;
+      width: 20px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      border-radius: 50%;
+      transition: .4s;
+    }
+    input:checked + .slider {
+      background-color: var(--accent-color);
+    }
+    input:checked + .slider:before {
+      transform: translateX(22px);
+    }
+    
+    body.dark-mode { background-color: #121212; color: #e0e0e0; }
+    body.dark-mode .header h1 { color: #ffffff; }
+    body.dark-mode .back-btn { background-color: #495057; }
+    body.dark-mode .back-btn:hover { background-color: #5a6268; }
+    body.dark-mode .settings-card { background-color: #1e1e1e; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); }
+    body.dark-mode .settings-card h2 { border-bottom-color: #333; }
+    body.dark-mode .setting-label p { color: #888; }
+    body.dark-mode select, body.dark-mode input[type="time"] {
+      background-color: #2c2c2c;
+      border-color: #444;
+      color: #e0e0e0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1 data-i18n-key="settingsTitle">Settings</h1>
+      <div class="header-buttons">
+          <a href="main.html" class="back-btn" data-i18n-key="dashboardButton">Dashboard</a>
+      </div>
+    </header>
+
+    <div class="settings-card">
+      <h2 data-i18n-key="remindersTitle">Reminder & Notification Settings</h2>
+      <div class="setting-item">
+        <div class="setting-label">
+          Notification Time
+          <p>Choose when you get reminded.</p>
+        </div>
+        <select id="remindBefore" class="setting-control">
+          <option value="0">At time of medicine</option>
+          <option value="5">5 minutes before</option>
+          <option value="10">10 minutes before</option>
+          <option value="15">15 minutes before</option>
+        </select>
+      </div>
+      <div class="setting-item">
+        <div class="setting-label">
+          Repeat Reminder
+          <p>Repeat every 15 min until marked.</p>
+        </div>
+        <label class="switch"><input type="checkbox" id="repeatReminder" class="setting-control"><span class="slider"></span></label>
+      </div>
+      <div class="setting-item">
+        <div class="setting-label">
+          Sound & Vibration
+          <p>Enable or disable vibration on alerts.</p>
+        </div>
+        <label class="switch"><input type="checkbox" id="vibration" class="setting-control" checked><span class="slider"></span></label>
+      </div>
+      <div class="setting-item">
+        <div class="setting-label">
+           Do Not Disturb
+           <p>Silence reminders between these hours.</p>
+        </div>
+        <div style="display: flex; gap: 0.5rem; align-items: center;">
+            <input type="time" id="dndStart" class="setting-control"> to <input type="time" id="dndEnd" class="setting-control">
+        </div>
+      </div>
+    </div>
+    
+    <div class="settings-card">
+      <h2 data-i18n-key="appearanceTitle">Appearance & Theme</h2>
+      <div class="setting-item">
+        <div class="setting-label">
+          <span data-i18n-key="themeLabel">Theme</span>
+          <p data-i18n-key="themeDesc">Choose between light or dark mode.</p>
+        </div>
+        <select id="themeSelector"><option value="light">Light</option><option value="dark">Dark</option></select>
+      </div>
+      <div class="setting-item">
+        <div class="setting-label">
+          <span data-i18n-key="accentLabel">Accent Color</span>
+          <p data-i18n-key="accentDesc">Select your favorite color.</p>
+        </div>
+        <select id="accentColor" class="setting-control"><option value="blue">Blue</option><option value="green">Green</option><option value="purple">Purple</option></select>
+      </div>
+    </div>
+
+    <div class="settings-card">
+      <h2 data-i18n-key="languageTitle">Language & Region</h2>
+      <div class="setting-item">
+        <div class="setting-label">
+          <span data-i18n-key="languageLabel">Language</span>
+          <p data-i18n-key="langDesc">Choose your preferred language.</p>
+        </div>
+        <select id="language" class="setting-control">
+          <option value="en">English</option>
+          <option value="ta">தமிழ் (Tamil)</option>
+        </select>
+      </div>
+      <div class="setting-item">
+        <div class="setting-label">
+          <span data-i18n-key="timeFormatLabel">Time Format</span>
+          <p data-i18n-key="timeFormatDesc">Choose 12-hour or 24-hour format.</p>
+        </div>
+        <select id="timeFormat" class="setting-control"><option value="12h">12-hour (AM/PM)</option><option value="24h">24-hour</option></select>
+      </div>
+    </div>
+  </div>
+  
+  <script src="js/translations.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/settings.js"></script>
+</body>
+</html>

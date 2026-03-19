@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login - MEDITRACKER</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap">
+  <style>
+    body { font-family: 'Poppins', sans-serif; display: grid; place-items: center; min-height: 100vh; background: #f0f2f5; }
+    .card { background: white; padding: 2.5rem; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.1); text-align: center; width: 100%; max-width: 380px; }
+    h1 { font-size: 1.8rem; font-weight: 600; margin-bottom: 2rem; color: #333; }
+    .form-group { margin-bottom: 1.5rem; text-align: left; position: relative; }
+    input { width: 100%; padding: 0.8rem 1rem; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem; box-sizing: border-box; }
+    .primary-btn { width: 100%; padding: 0.9rem; background: #007bff; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 1rem; font-weight: 600; transition: background-color 0.2s; }
+    .primary-btn:hover { background: #0056b3; }
+    .secondary-text { margin-top: 1.5rem; color: #555; }
+    a { color: #007bff; text-decoration: none; }
+    .toggle-password { position: absolute; right: 15px; top: 50%; transform: translateY(-50%); cursor: pointer; color: #888; user-select: none; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Welcome Back!</h1>
+    <form id="loginForm">
+      <div class="form-group">
+        <input type="email" placeholder="Email" id="loginEmail" required>
+      </div>
+      <div class="form-group">
+        <input type="password" placeholder="Password" id="loginPassword" required>
+        <span class="toggle-password" id="toggleLoginPassword">👁️</span>
+      </div>
+      <button type="submit" class="primary-btn">Login</button>
+    </form>
+    <p class="secondary-text">
+      Don't have an account? <a href="register.html">Register</a>
+    </p>
+  </div>
+</body>
+</html>
